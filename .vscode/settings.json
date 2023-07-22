@@ -1,0 +1,7 @@
+{
+  "prettier.enable": true,
+  "editor.autoClosingBrackets": "languageDefined",
+  "prettier.arrowParens": "always",
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "prettier.bracketSameLine": false
+}
