@@ -1,4 +1,4 @@
-/** @format */
+
 import React, { useEffect, useState } from "react";
 import { BASE_URL, GET_PRODUCT_DETAILS } from "../../constants/Index";
 import axios from "axios";
