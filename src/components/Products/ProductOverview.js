@@ -5,7 +5,6 @@ import axios from "axios";
 import "./products.css";
 import SearchBar from "../Search_bar/SearchBar";
 import Navbar from "../Header/Navbar";
-import { Link, useLocation } from "react-router-dom";
 import Button from "../Buttons/Button";
 
 const ProductOverview = (props) => {
@@ -14,6 +13,7 @@ const ProductOverview = (props) => {
   const productId = JSON.parse(proId);
   const [product, setProduct] = useState([]);
   const [productImage, setProductImage] = useState([]);
+  
   const IncrementItemInCart = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
   };

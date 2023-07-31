@@ -33,8 +33,8 @@ const Products = (props) => {
 
   const productOverview = (id) => {
     localStorage.setItem("productId", JSON.stringify(id));
-      navigate(`/product-overview?id=${id}`);
-    // navigate("/product-overview", { addItemsToCart: props.addItemsToCart });
+      // navigate(`/product-overview?id=${id}`);
+    navigate("/product-overview");
   };
 
   return (
