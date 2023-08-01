@@ -4,7 +4,7 @@ import { BASE_URL, GET_PRODUCT_DETAILS } from "../../constants/Index";
 import axios from "axios";
 import "./products.css";
 import SearchBar from "../Search_bar/SearchBar";
-import Navbar from "../Header/Navbar";
+import Navbar from "../Common/Header/Navbar";
 import Button from "../Buttons/Button";
 
 const ProductOverview = (props) => {

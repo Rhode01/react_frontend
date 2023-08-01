@@ -1,11 +1,11 @@
-
 import React, { useState } from "react";
 import "./MainContent.css";
-import Navbar from "../Header/Navbar";
+import Navbar from "../Common/Header/Navbar";
 import SearchBar from "../Search_bar/SearchBar";
 import ImageSlider from "../Image_Slider/ImageSlider";
 import Categories from "../Categories/Categories";
 import Products from "../Products/Products";
+import Footer  from "../Common/Footer/Footer";
 const MainContent = () => {
   const cart = [
     {
@@ -23,8 +23,8 @@ const MainContent = () => {
   };
   return (
     <>
-      <Navbar addItems={addItemsToCart} />
-      <SearchBar cartItems ={cartItems}/>
+      <Navbar/>
+      <SearchBar />
       <div className="main-content">
         <Categories />
         <div className="center-content">
@@ -34,6 +34,7 @@ const MainContent = () => {
       <div className="products">
         <Products />
       </div>
+      <Footer />
     </>
   );
 };
