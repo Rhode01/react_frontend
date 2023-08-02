@@ -7,12 +7,11 @@ import "./products.css";
 import Navbar from "../Common/Header/Navbar";
 import Button from "../Buttons/Button";
 
-const ProductOverview = ({ incrementItemsInCart, decrementItemsInCart}) => {
+const ProductOverview = ({ incrementItemsInCart, decrementItemsInCart,quantity}) => {
   const proId = localStorage.getItem("productId");
   const productId = JSON.parse(proId);
   const [product, setProduct] = useState([]);
   const [productImage, setProductImage] = useState([]);
-
   useEffect(() => {
     const fetch_productDetails = async () => {
       try {
@@ -63,7 +62,7 @@ const ProductOverview = ({ incrementItemsInCart, decrementItemsInCart}) => {
                 <i
                   className="uil uil-plus"
                   style={{ cursor: "pointer" }}
-                  onClick={IncrementItemInCart}
+                  onClick={incrementItemsInCart}
                 ></i>
                 {quantity}
                 <i
@@ -73,7 +72,7 @@ const ProductOverview = ({ incrementItemsInCart, decrementItemsInCart}) => {
                     cursor: quantity === 1 ? "not-allowed" : "pointer",
                     opacity: quantity === 1 ? 0.5 : 1,
                   }}
-                  onClick={quantity === 1 ? undefined : DecrementItemInCart}
+                  onClick={quantity === 1 ? undefined : decrementItemsInCart}
                 ></i>
               </span>
               <div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import SearchBar from "./Search_bar/SearchBar";
-const Navbar = ({CartItems}) => {
+const Navbar = ({ cartItems }) => {
   const [isAccountOpen, setIsAccountOpen] = useState(false);
   const toggleAccountMenu = () => {
     setIsAccountOpen(!isAccountOpen);
@@ -38,7 +38,7 @@ const Navbar = ({CartItems}) => {
           </div>
         </div>
       </nav>
-      <SearchBar CartItems={CartItems} />
+      <SearchBar cartItems={cartItems} />
     </>
   );
 };

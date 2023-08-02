@@ -5,11 +5,10 @@ import ImageSlider from "../Image_Slider/ImageSlider";
 import Categories from "../Categories/Categories";
 import Products from "../Products/Products";
 import Footer from "../Common/Footer/Footer";
-const MainContent = () => {
-  
+const MainContent = ({ cartItems }) => {
   return (
     <>
-      <Navbar />
+      <Navbar cartItems={cartItems} />
       <div className="main-content">
         <Categories />
         <div className="center-content">

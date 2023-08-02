@@ -3,8 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./SearchBar.css";
 
-const SearchBar = ({CartItems}) => {
-  const totalItemsInCart =0
+const SearchBar = ({ cartItems }) => {
+  const totalItemsInCart = cart.reduce((acc, item) => acc + item.Qty, 0);
   return (
     <div className="search-bar">
       <div className="search-bar-brand">Rhode Ecommerce</div>
