@@ -2,9 +2,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./SearchBar.css";
-
 const SearchBar = ({ cartItems }) => {
-  const totalItemsInCart = cart.reduce((acc, item) => acc + item.Qty, 0);
+  const totalItemsInCart = cartItems.reduce((acc, item) => acc + item.Qty, 0);
+
   return (
     <div className="search-bar">
       <div className="search-bar-brand">Rhode Ecommerce</div>
@@ -22,7 +22,7 @@ const SearchBar = ({ cartItems }) => {
         <Link to="/cart" className="cart-link">
           <i className="uil uil-shopping-cart"></i>
           <div className="cart-item-count">
-            {/* {CartItems.length === 0 ? "" : CartItems.length} */}
+            {cartItems.length === 0 ? "" : totalItemsInCart}
           </div>
         </Link>
       </div>
