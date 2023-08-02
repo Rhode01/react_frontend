@@ -9,21 +9,15 @@ const Footer = () => {
             <h1>Rhode Ecommerce site Django and React</h1>
             <div className="icon d_flex">
               <div className="img d_flex">
-                <i class="fa-brands fa-google-play"></i>
+                <i className="uil uil-google-play"></i>
                 <span>Google Play</span>
-              </div>
-              <div className="img d_flex">
-                <i class="fa-brands fa-app-store-ios"></i>
-                <span>App Store</span>
               </div>
             </div>
           </div>
           <div className="box">
             <h2>About Us</h2>
             <ul>
-              <li>Careers</li>
               <li>Our Stores</li>
-              <li>Our Cares</li>
               <li>Terms & Conditions</li>
               <li>Privacy Policy</li>
             </ul>

@@ -22,7 +22,7 @@ const SearchBar = ({ cartItems }) => {
         <Link to="/cart" className="cart-link">
           <i className="uil uil-shopping-cart"></i>
           <div className="cart-item-count">
-            {cartItems.length === 0 ? "" : totalItemsInCart}
+            {cartItems.length === 0 ? "0" : totalItemsInCart}
           </div>
         </Link>
       </div>

@@ -7,7 +7,7 @@ import "./products.css";
 import Navbar from "../Common/Header/Navbar";
 import Button from "../Buttons/Button";
 
-const ProductOverview = ({ incrementItemsInCart, decrementItemsInCart,quantity}) => {
+const ProductOverview = ({cartItems, incrementItemsInCart, decrementItemsInCart,quantity,addItemsToCart}) => {
   const proId = localStorage.getItem("productId");
   const productId = JSON.parse(proId);
   const [product, setProduct] = useState([]);
@@ -29,10 +29,40 @@ const ProductOverview = ({ incrementItemsInCart, decrementItemsInCart,quantity})
     };
     fetch_productDetails();
   }, [productId]);
-
+  const buttonSt = {
+    color: "#ffffff",
+    fontWeight: "bold",
+    display: "block",
+    marginBottom: "10px",
+    width: "100%",
+    border: "1px solid #ccc",
+    borderRadius: "30px",
+    backgroundColor: "#639e95",
+    padding: "14px 28px",
+    fontSize: "16px",
+    cursor: "pointer",
+    textAlign: "center",
+  };
+  const buttonStyle = {
+    color: "#ffffff",
+    fontWeight: "bold",
+    display: "block",
+    marginBottom: "10px",
+    width: "100%",
+    border: "1px solid #ccc",
+    borderRadius: "30px",
+    backgroundColor: "#0c8b7b",
+    padding: "14px 28px",
+    fontSize: "16px",
+    cursor: "pointer",
+    textAlign: "center",
+  };
+  const AddtoCartBtn =(itemQuantity,productId)=>{
+    addItemsToCart(itemQuantity,productId)
+  }
   return (
     <div>
-      <Navbar />
+      <Navbar cartItems={cartItems} />
       {product && (
         <>
           <div className="wrapper">
@@ -76,8 +106,11 @@ const ProductOverview = ({ incrementItemsInCart, decrementItemsInCart,quantity})
                 ></i>
               </span>
               <div>
-                <Button name="Buy Now" />
-                <Button name="Add to Cart" color="#639e95" />
+                <button style={buttonStyle}>Buy Now</button>
+                <button
+                  onClick={() => AddtoCartBtn(quantity, product.id)} style={buttonSt}>
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>

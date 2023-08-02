@@ -1,5 +1,7 @@
+/** @format */
+
 import React from "react";
-const Button = (props) => {
+const Button = ({ props }) => {
   const buttonStyle = {
     color: "#ffffff",
     fontWeight: "bold",
@@ -14,11 +16,9 @@ const Button = (props) => {
     cursor: "pointer",
     textAlign: "center",
   };
-  
   return (
     <div>
-      <button
-        style={buttonStyle}>{props.name}</button>
+      <button style={buttonStyle}>{props.name}</button>
     </div>
   );
 };

@@ -3,12 +3,10 @@ import { BASE_URL, GET_PRODUCTS_URL } from "../../constants/Index";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const Products = ({
-  IncrementItemInCartcrementItemInCart,  DecrementItemInCart}) => {
+const Products = ({ cartItems }) => {
   const [products, setProducts] = useState([]);
   const [productsImage, setProductsImage] = useState([]);
   const navigate = useNavigate();
-
   useEffect(() => {
     const getProducts = async () => {
       try {

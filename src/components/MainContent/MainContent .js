@@ -16,7 +16,7 @@ const MainContent = ({ cartItems }) => {
         </div>
       </div>
       <div className="products">
-        <Products />
+        <Products cartItems={cartItems} />
       </div>
       <Footer />
     </>

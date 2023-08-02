@@ -16,7 +16,6 @@ function App() {
          productId: productId,
        },
      ]);
-     setQuantity((prevQuantity) => prevQuantity + parseInt(itemQuantity, 10));
    };
 
    const IncrementItemInCart = () => {
@@ -29,10 +28,7 @@ function App() {
   return (
     <div className=".container-fluid">
       <Routes>
-        <Route
-          path="/"
-          element=<MainContent cartItems={cartItems}      />
-        />
+        <Route path="/" element=<MainContent cartItems={cartItems} /> />
         <Route path="/cart" element={<Cart cartItems={cartItems} />} />
         <Route
           path="/product-overview"
@@ -41,6 +37,8 @@ function App() {
             incrementItemsInCart={IncrementItemInCart}
             decrementItemsInCart={DecrementItemInCart}
             quantity={quantity}
+            cartItems={cartItems}
+      
           />
         />
       </Routes>
