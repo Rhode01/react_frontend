@@ -3,7 +3,8 @@ import { BASE_URL, GET_PRODUCTS_URL } from "../../constants/Index";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const Products = (props) => {
+const Products = ({
+  IncrementItemInCartcrementItemInCart,  DecrementItemInCart}) => {
   const [products, setProducts] = useState([]);
   const [productsImage, setProductsImage] = useState([]);
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Products = (props) => {
       try {
         const response = await axios.get(GET_PRODUCTS_URL);
         if (response.status === 200) {
-            const productImageUrls = response.data.product_image.map(
+          const productImageUrls = response.data.product_image.map(
             (relativePath) => `${BASE_URL}${relativePath}`
           );
           setProductsImage(productImageUrls);
@@ -31,21 +32,28 @@ const Products = (props) => {
 
   const productOverview = (id) => {
     localStorage.setItem("productId", JSON.stringify(id));
-      // navigate(`/product-overview?id=${id}`);
     navigate("/product-overview");
   };
 
   return (
-    <div >
+    <div>
       <div>
         {products.length > 0 && (
-          <div className="products" style={{ marginTop: "50px", cursor: "pointer" }}>
+          <div
+            className="products"
+            style={{ marginTop: "50px", cursor: "pointer" }}
+          >
             {products.map((product) => (
               <div
-                key={product.id}className="product-card" onClick={() => productOverview(product.id)}
+                key={product.id}
+                className="product-card"
+                onClick={() => productOverview(product.id)}
               >
-                <img src={productsImage[product.id - 1]}  alt="Product"
-                  className="product-image" />
+                <img
+                  src={productsImage[product.id - 1]}
+                  alt="Product"
+                  className="product-image"
+                />
                 <span className="product-name">{product.product_name}</span>
                 <span className="product-price">
                   Price: {product.product_price}

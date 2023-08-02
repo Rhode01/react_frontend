@@ -1,25 +1,18 @@
+/** @format */
 
 import React, { useEffect, useState } from "react";
 import { BASE_URL, GET_PRODUCT_DETAILS } from "../../constants/Index";
 import axios from "axios";
 import "./products.css";
-import SearchBar from "../Search_bar/SearchBar";
 import Navbar from "../Common/Header/Navbar";
 import Button from "../Buttons/Button";
 
-const ProductOverview = (props) => {
-  const [quantity, setQuantity] = useState(1);
+const ProductOverview = ({ incrementItemsInCart, decrementItemsInCart}) => {
   const proId = localStorage.getItem("productId");
   const productId = JSON.parse(proId);
   const [product, setProduct] = useState([]);
   const [productImage, setProductImage] = useState([]);
-  
-  const IncrementItemInCart = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
-  };
-  const DecrementItemInCart = () => {
-    setQuantity((prevQuantity) => prevQuantity - 1);
-  };
+
   useEffect(() => {
     const fetch_productDetails = async () => {
       try {
@@ -41,7 +34,6 @@ const ProductOverview = (props) => {
   return (
     <div>
       <Navbar />
-      <SearchBar />
       {product && (
         <>
           <div className="wrapper">
