@@ -37,8 +37,7 @@ const Products = ({ cartItems }) => {
     <div>
       <div>
         {products.length > 0 && (
-          <div
-            className="products"
+          <div className="products"
             style={{ marginTop: "50px", cursor: "pointer" }}
           >
             {products.map((product) => (

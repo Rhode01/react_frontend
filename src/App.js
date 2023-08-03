@@ -9,7 +9,7 @@ import { useState } from "react";
 function App() {
    const cart = [];
    const [cartItems, setCartItems] = useState(cart);
-   const [quantity, setQuantity] = useState(0);
+   const [quantity, setQuantity] = useState(1);
    const addItemsToCart = (itemQuantity, productId) => {
      setCartItems((prevItems) => [
        ...prevItems,

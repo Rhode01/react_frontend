@@ -4,12 +4,7 @@ import Navbar from "../Header/Navbar";
 import "./cart.css";
 import axios from "axios";
 import { BASE_URL, GET_CART_PRODUCTS } from "../../../constants/Index";
-const Cart = ({
-  cartItems,
-  incrementItemsInCart,
-  decrementItemsInCart,
-  addItemsToCart,
-}) => {
+const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToCart}) => {
   const [product, setProductInfo] = useState([]);
   const [productImage, setProductImage] = useState([]);
   useEffect(() => {
@@ -33,22 +28,19 @@ const Cart = ({
     <>
       <div>
         <Navbar cartItems={cartItems} />
-        <section className="cart-items">
-          <div className="container d_flex">
+        <section className="cart-container">
+          <div className="cart-content">
             <div className="cart-details">
               {cartItems.length === 0 ? (
                 <h1 className="no-items product">No Items are added to Cart</h1>
               ) : (
                 cartItems.map((item) => (
-                  <div
-                    className="cart-list product d_flex"
-                    key={item.productId}
-                  >
+                  <div className="cart-list" key={item.productId}>
                     <div className="img">
                       <img src={item.productImageURL} alt="Product image" />
                     </div>
                     <div className="cart-details">
-                      {/* Display other product details here */}
+                  
                     </div>
                     <div className="cart-items-function">
                       <div className="removeCart">
@@ -56,17 +48,11 @@ const Cart = ({
                           <i className="uil uil-times"></i>
                         </button>
                       </div>
-                      <div className="cartControl d_flex">
-                        <button
-                          className="incCart"
-                          onClick={() => addItemsToCart()}
-                        >
+                      <div className="cartControl">
+                        <button className="incCart" onClick={() => addItemsToCart()}>
                           <i className="uil uil-plus"></i>
                         </button>
-                        <button
-                          className="desCart"
-                          onClick={() => incrementItemsInCart()}
-                        >
+                        <button className="desCart" onClick={() => incrementItemsInCart()}>
                           <i className="uil uil-minus"></i>
                         </button>
                       </div>
@@ -76,11 +62,13 @@ const Cart = ({
                 ))
               )}
             </div>
-            <div className="cart-total product">
-              <h2>Cart Summary</h2>
-              <div className="d_flex">
-                <h4>Total Price :</h4>
-                <h3>$</h3>
+            <div className="cart-summary">
+              <div className="cart-total product">
+                <h2>Cart Summary</h2>
+                <div className="d_flex">
+                  <h4>Total Price :</h4>
+                  <h3>$</h3>
+                </div>
               </div>
             </div>
           </div>

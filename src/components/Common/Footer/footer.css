@@ -1,7 +1,10 @@
 footer {
-    background: #161619;
-    padding: 100px 0;
+    background: #639e95;
     color: #cfcfd1;
+    padding: 28px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 20px;
 }
 
 footer h1 {

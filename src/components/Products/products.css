@@ -87,5 +87,7 @@
     padding: 28px;
     border-radius: 8px;
     border: 1px solid #ccc;
-    background-color: #fff;   
+    background-color: #fff;
+    margin-top: 20px;
+    margin-bottom: 20px;  
 }
