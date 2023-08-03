@@ -18,7 +18,6 @@ function App() {
          productId: productId,
        },
      ]);
-     console.log(cartItems)
    };
 
    const IncrementItemInCart = () => {
