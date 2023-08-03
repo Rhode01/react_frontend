@@ -5,12 +5,12 @@ import "./cart.css";
 import axios from "axios";
 import { BASE_URL, GET_CART_PRODUCTS } from "../../../constants/Index";
 const Cart = ({cartItems, incrementItemsInCart, decrementItemsInCart, addItemsToCart, }) => {
-  const [product, setProductInfo]= useState[{}]
-  const [productImage, setProductImage]= useState[{}]
+  const [product, setProductInfo]= useState([])
+  const [productImage, setProductImage]= useState([])
   useEffect(()=>{
     const fetchCartProducts = async()=>{
       try {
-        const productIds = cartItems.map((item) => item.productId);
+        const productIds = [].concat(cartItems).map((item) => item.productId);
         const response = await axios.get(`${GET_CART_PRODUCTS}/${productIds}`);
         if (response.status ===200){
            const productImageUrls = response.data.product_image.map(
@@ -25,8 +25,9 @@ const Cart = ({cartItems, incrementItemsInCart, decrementItemsInCart, addItemsTo
       catch (error) {
         
       }
-    }
-  })
+    };
+    fetchCartProducts()
+  },[cartItems])
   return (
     <>
       <div>
