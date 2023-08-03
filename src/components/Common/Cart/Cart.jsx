@@ -4,30 +4,31 @@ import Navbar from "../Header/Navbar";
 import "./cart.css";
 import axios from "axios";
 import { BASE_URL, GET_CART_PRODUCTS } from "../../../constants/Index";
-const Cart = ({cartItems, incrementItemsInCart, decrementItemsInCart, addItemsToCart, }) => {
-  const [product, setProductInfo]= useState([])
-  const [productImage, setProductImage]= useState([])
-  useEffect(()=>{
-    const fetchCartProducts = async()=>{
+const Cart = ({
+  cartItems,
+  incrementItemsInCart,
+  decrementItemsInCart,
+  addItemsToCart,
+}) => {
+  const [product, setProductInfo] = useState([]);
+  const [productImage, setProductImage] = useState([]);
+  useEffect(() => {
+    const fetchCartProducts = async () => {
       try {
         const productIds = [].concat(cartItems).map((item) => item.productId);
         const response = await axios.get(`${GET_CART_PRODUCTS}/${productIds}`);
-        if (response.status ===200){
-           const productImageUrls = response.data.product_image.map(
-             (relativePath) => `${BASE_URL}${relativePath}`
-           );
-           setProductImage(productImageUrls);
+        if (response.status === 200) {
+          const productImageUrls = response.data.product_image.map(
+            (relativePath) => `${BASE_URL}${relativePath}`
+          );
+          setProductImage(productImageUrls);
+        } else {
+          console.log("failed");
         }
-        else{
-          console.log("failed")
-        }
-      } 
-      catch (error) {
-        
-      }
+      } catch (error) {}
     };
-    fetchCartProducts()
-  },[cartItems])
+    fetchCartProducts();
+  }, [cartItems]);
   return (
     <>
       <div>
@@ -35,43 +36,49 @@ const Cart = ({cartItems, incrementItemsInCart, decrementItemsInCart, addItemsTo
         <section className="cart-items">
           <div className="container d_flex">
             <div className="cart-details">
-              <h1 className="no-items product">No Items are add in Cart</h1>
-              return (
-              <div className="cart-list product d_flex" key="">
-                <div className="img">
-                  <img src="" alt="Product image" />
-                </div>
-                <div className="cart-details">
-                  
-                </div>
-                <div className="cart-items-function">
-                  <div className="removeCart">
-                    <button className="removeCart">
-                      <i className="uil uil-times"></i>
-                    </button>
+              {cartItems.length === 0 ? (
+                <h1 className="no-items product">No Items are added to Cart</h1>
+              ) : (
+                cartItems.map((item) => (
+                  <div
+                    className="cart-list product d_flex"
+                    key={item.productId}
+                  >
+                    <div className="img">
+                      <img src={item.productImageURL} alt="Product image" />
+                    </div>
+                    <div className="cart-details">
+                      {/* Display other product details here */}
+                    </div>
+                    <div className="cart-items-function">
+                      <div className="removeCart">
+                        <button className="removeCart">
+                          <i className="uil uil-times"></i>
+                        </button>
+                      </div>
+                      <div className="cartControl d_flex">
+                        <button
+                          className="incCart"
+                          onClick={() => addItemsToCart()}
+                        >
+                          <i className="uil uil-plus"></i>
+                        </button>
+                        <button
+                          className="desCart"
+                          onClick={() => incrementItemsInCart()}
+                        >
+                          <i className="uil uil-minus"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="cart-item-price"></div>
                   </div>
-                  <div className="cartControl d_flex">
-                    <button
-                      className="incCart"
-                      onClick={() => addItemsToCart()}
-                    >
-                      <i className="uil uil-plus"></i>
-                    </button>
-                    <button
-                      className="desCart"
-                      onClick={() => incrementItemsInCart()}
-                    >
-                      <i className="uil uil-minus"></i>
-                    </button>
-                  </div>
-                </div>
-                <div className="cart-item-price"></div>
-              </div>
+                ))
+              )}
             </div>
-            )
             <div className="cart-total product">
               <h2>Cart Summary</h2>
-              <div className=" d_flex">
+              <div className="d_flex">
                 <h4>Total Price :</h4>
                 <h3>$</h3>
               </div>
@@ -83,4 +90,5 @@ const Cart = ({cartItems, incrementItemsInCart, decrementItemsInCart, addItemsTo
     </>
   );
 };
+
 export default Cart;
