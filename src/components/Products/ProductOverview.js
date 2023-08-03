@@ -6,12 +6,16 @@ import axios from "axios";
 import "./products.css";
 import Navbar from "../Common/Header/Navbar";
 import Button from "../Buttons/Button";
+import Footer from "../Common/Footer/Footer";
+import { useNavigate } from "react-router-dom";
+
 
 const ProductOverview = ({cartItems, incrementItemsInCart, decrementItemsInCart,quantity,addItemsToCart}) => {
   const proId = localStorage.getItem("productId");
   const productId = JSON.parse(proId);
   const [product, setProduct] = useState([]);
   const [productImage, setProductImage] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetch_productDetails = async () => {
       try {
@@ -60,6 +64,19 @@ const ProductOverview = ({cartItems, incrementItemsInCart, decrementItemsInCart,
   const AddtoCartBtn =(itemQuantity,productId)=>{
     addItemsToCart(itemQuantity,productId)
   }
+  const BuynowBtn = () =>{
+     const userSession = localStorage.getItem("user");
+     const user = JSON.parse(userSession);
+     const isAuthenticated = user !== null;
+     if(isAuthenticated){
+        navigate("/buynow")
+     }
+     else{
+      console.log("BuynowBtn");
+      navigate("/login")
+
+     }
+  }
   return (
     <div>
       <Navbar cartItems={cartItems} />
@@ -106,14 +123,16 @@ const ProductOverview = ({cartItems, incrementItemsInCart, decrementItemsInCart,
                 ></i>
               </span>
               <div>
-                <button style={buttonStyle}>Buy Now</button>
-                <button
-                  onClick={() => AddtoCartBtn(quantity, product.id)} style={buttonSt}>
+                <button style={buttonStyle} onClick={BuynowBtn}>
+                  Buy Now
+                </button>
+                <button onClick={() => AddtoCartBtn(quantity, product.id)} style={buttonSt}>
                   Add to Cart
                 </button>
               </div>
             </div>
           </div>
+          <Footer />
         </>
       )}
     </div>

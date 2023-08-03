@@ -1,7 +1,7 @@
 footer {
-    background-color: #0f3460;
+    background: #161619;
     padding: 100px 0;
-    color: #fff;
+    color: #cfcfd1;
 }
 
 footer h1 {
@@ -12,9 +12,10 @@ footer h1 {
 }
 
 footer .img {
-    background-color: #0c2a4d;
+    background-color: grey;
     padding: 15px 20px;
     border-radius: 5px;
+
 }
 
 footer .img i {
