@@ -4,7 +4,7 @@ import Navbar from "../Header/Navbar";
 import "./cart.css";
 import axios from "axios";
 import { BASE_URL, GET_CART_PRODUCTS } from "../../../constants/Index";
-const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToCart}) => {
+const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToCartz}) => {
   const [product, setProductInfo] = useState([]);
   const [productImage, setProductImage] = useState([]);
   useEffect(() => {
