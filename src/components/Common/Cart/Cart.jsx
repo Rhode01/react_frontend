@@ -8,10 +8,13 @@ const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToC
   const [product, setProductInfo] = useState([]);
   const [productImage, setProductImage] = useState([]);
   useEffect(() => {
+    if (cartItems.length === 0) {
+      return;
+    }
     const fetchCartProducts = async () => {
       try {
         const productIds = [].concat(cartItems).map((item) => item.productId);
-        const response = await axios.get(`${GET_CART_PRODUCTS}/${productIds}`);
+        const response = await axios.get(`${GET_CART_PRODUCTS}${productIds}`);
         if (response.status === 200) {
            let productImageUrls = [];
            if (Array.isArray(response.data.product_image)) {
@@ -22,6 +25,7 @@ const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToC
              productImageUrls = [`${BASE_URL}${response.data.product_image}`];
            }
           setProductImage(productImageUrls);
+          setProductInfo(response.data.product)
         } else {
           console.log("failed");
         }
@@ -39,14 +43,12 @@ const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToC
               {cartItems.length === 0 ? (
                 <h1 className="no-items product">No Items are added to Cart</h1>
               ) : (
-                cartItems.map((item) => (
-                  <div className="cart-list" key={item.productId}>
+                product.map((item) => (
+                  <div className="cart-list" key={item.id}>
                     <div className="img">
-                      <img src={item.productImageURL} alt="Product image" />
+                      <img src={productImage[item.id - 1]}alt="Product image"/>
                     </div>
-                    <div className="cart-details">
-                  
-                    </div>
+                    <div className="cart-details"></div>
                     <div className="cart-items-function">
                       <div className="removeCart">
                         <button className="removeCart">
@@ -54,10 +56,13 @@ const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToC
                         </button>
                       </div>
                       <div className="cartControl">
-                        <button className="incCart" onClick={() => addItemsToCart()}>
+                        <button className="incCart"onClick={() => addItemsToCart()}>
                           <i className="uil uil-plus"></i>
                         </button>
-                        <button className="desCart" onClick={() => incrementItemsInCart()}>
+                        <button
+                          className="desCart"
+                          onClick={() => incrementItemsInCart()}
+                        >
                           <i className="uil uil-minus"></i>
                         </button>
                       </div>
