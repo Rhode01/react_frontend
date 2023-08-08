@@ -4,7 +4,7 @@ import Navbar from "../Header/Navbar";
 import "./cart.css";
 import axios from "axios";
 import { BASE_URL, GET_CART_PRODUCTS } from "../../../constants/Index";
-const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToCartz}) => {
+const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToCart}) => {
   const [product, setProductInfo] = useState([]);
   const [productImage, setProductImage] = useState([]);
   useEffect(() => {
@@ -13,9 +13,14 @@ const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToC
         const productIds = [].concat(cartItems).map((item) => item.productId);
         const response = await axios.get(`${GET_CART_PRODUCTS}/${productIds}`);
         if (response.status === 200) {
-          const productImageUrls = response.data.product_image.map(
-            (relativePath) => `${BASE_URL}${relativePath}`
-          );
+           let productImageUrls = [];
+           if (Array.isArray(response.data.product_image)) {
+             productImageUrls = response.data.product_image.map(
+               (relativePath) => `${BASE_URL}${relativePath}`
+             );
+           } else if (typeof response.data.product_image === "string") {
+             productImageUrls = [`${BASE_URL}${response.data.product_image}`];
+           }
           setProductImage(productImageUrls);
         } else {
           console.log("failed");
@@ -78,5 +83,4 @@ const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToC
     </>
   );
 };
-
 export default Cart;
