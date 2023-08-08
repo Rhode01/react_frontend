@@ -45,7 +45,7 @@ const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToC
               ) : (
                 product.map((item) => (
                   <div className="cart-list" key={item.id}>
-                    <div className="img">
+                    <div className="product-image-small">
                       <img src={productImage[item.id - 1]}alt="Product image"/>
                     </div>
                     <div className="cart-details"></div>
@@ -56,13 +56,10 @@ const Cart = ({cartItems, incrementItemsInCart,decrementItemsInCart, addItemsToC
                         </button>
                       </div>
                       <div className="cartControl">
-                        <button className="incCart"onClick={() => addItemsToCart()}>
+                        <button className="incCart" onClick={() => addItemsToCart()}>
                           <i className="uil uil-plus"></i>
                         </button>
-                        <button
-                          className="desCart"
-                          onClick={() => incrementItemsInCart()}
-                        >
+                        <button className="desCart" onClick={() => incrementItemsInCart()}>
                           <i className="uil uil-minus"></i>
                         </button>
                       </div>
