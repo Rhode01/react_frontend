@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 28px;
-    /* float: left; */
+   
 }
 .product-wrap {
     margin: 0 auto;
@@ -31,8 +31,7 @@
     }
 }
 .product-info {
-    /* border-right: 1px solid #ccc;
-    width: 60%; */
+
     h2 {
         padding-bottom: 15px;
         font-size: 32px;
